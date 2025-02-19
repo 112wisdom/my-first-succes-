@@ -1,0 +1,88 @@
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+export default function DepositWithdrawPage() {
+  return (
+    <div className="container mx-auto p-6">
+      <h1 className="text-2xl font-bold mb-6">Deposit / Withdraw</h1>
+      <Card className="p-6 border-primary/20 bg-background/50 backdrop-blur">
+        <Tabs defaultValue="deposit" className="w-full">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="deposit">Deposit</TabsTrigger>
+            <TabsTrigger value="withdraw">Withdraw</TabsTrigger>
+          </TabsList>
+          <TabsContent value="deposit">
+            <form className="space-y-4">
+              <div>
+                <label htmlFor="deposit-asset" className="block text-sm font-medium text-gray-300 mb-1">
+                  Select Asset
+                </label>
+                <Select>
+                  <SelectTrigger id="deposit-asset">
+                    <SelectValue placeholder="Select asset" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="btc">Bitcoin (BTC)</SelectItem>
+                    <SelectItem value="eth">Ethereum (ETH)</SelectItem>
+                    <SelectItem value="usdt">Tether (USDT)</SelectItem>
+                    <SelectItem value="usdc">USD Coin (USDC)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <label htmlFor="deposit-amount" className="block text-sm font-medium text-gray-300 mb-1">
+                  Amount
+                </label>
+                <Input id="deposit-amount" type="number" placeholder="0.00" />
+              </div>
+              <div>
+                <label htmlFor="deposit-address" className="block text-sm font-medium text-gray-300 mb-1">
+                  Deposit Address
+                </label>
+                <Input id="deposit-address" type="text" readOnly value="0x1234...5678" />
+              </div>
+              <Button className="w-full">Generate QR Code</Button>
+            </form>
+          </TabsContent>
+          <TabsContent value="withdraw">
+            <form className="space-y-4">
+              <div>
+                <label htmlFor="withdraw-asset" className="block text-sm font-medium text-gray-300 mb-1">
+                  Select Asset
+                </label>
+                <Select>
+                  <SelectTrigger id="withdraw-asset">
+                    <SelectValue placeholder="Select asset" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="btc">Bitcoin (BTC)</SelectItem>
+                    <SelectItem value="eth">Ethereum (ETH)</SelectItem>
+                    <SelectItem value="usdt">Tether (USDT)</SelectItem>
+                    <SelectItem value="usdc">USD Coin (USDC)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <label htmlFor="withdraw-amount" className="block text-sm font-medium text-gray-300 mb-1">
+                  Amount
+                </label>
+                <Input id="withdraw-amount" type="number" placeholder="0.00" />
+              </div>
+              <div>
+                <label htmlFor="withdraw-address" className="block text-sm font-medium text-gray-300 mb-1">
+                  Withdrawal Address
+                </label>
+                <Input id="withdraw-address" type="text" placeholder="Enter withdrawal address" />
+              </div>
+              <Button className="w-full">Withdraw</Button>
+            </form>
+          </TabsContent>
+        </Tabs>
+      </Card>
+    </div>
+  )
+}
+
